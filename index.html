@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jordan Luiz - Portfólio de Desenvolvimento e Design</title>
+    <!-- Link para o Font Awesome para ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Link para a fonte Inter do Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -172,12 +174,14 @@
             box-shadow: 0 12px 30px rgba(var(--neon-purple-rgb), 0.3);
         }
 
-        .card img {
+        /* Project images standardization */
+        #projects .card img {
+            height: 200px; /* Fixed height for project images */
+            object-fit: cover; /* Cover the area, cropping if necessary */
+            object-position: center; /* Center the image within its bounds */
             border-radius: 0.75rem;
             margin-bottom: 1.5rem;
             width: 100%;
-            height: auto;
-            object-fit: cover;
         }
 
         /* Footer */
@@ -303,7 +307,7 @@
         #tech-stack .tech-icons-track {
             display: flex;
             white-space: nowrap; /* Prevent items from wrapping */
-            animation: scroll-tech-icons 70s linear infinite; /* Adjust time for speed */
+            animation: scroll-tech-icons 40s linear infinite; /* Adjust time for speed */
             width: fit-content; /* Ensure the track is wide enough */
         }
 
@@ -367,6 +371,10 @@
             #tech-stack .tech-icons-track {
                 animation: scroll-tech-icons 30s linear infinite; /* Faster scroll on smaller screens */
             }
+            #about .about-image { /* Smaller on tablets */
+                max-width: 250px;
+                height: auto;
+            }
         }
 
         @media (max-width: 768px) {
@@ -410,86 +418,36 @@
             #tech-stack .tech-icons-track {
                 animation: scroll-tech-icons 20s linear infinite; /* Even faster scroll on mobile */
             }
+            #about .flex-col { /* Ensure stacked layout on mobile */
+                flex-direction: column;
+                align-items: center;
+            }
+            #about .md\:w-1\/2 { /* Reset width for mobile */
+                width: 100%;
+            }
+            #about .about-image { /* Smaller on mobile */
+                max-width: 200px;
+            }
         }
 
-        /* Modal Styles */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1001; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(8px); /* Frosted glass effect */
+        /* Styles for the About section image */
+        #about .about-image {
+            width: 100%; /* Occupy full width of its column */
+            max-width: 350px; /* Limit maximum size */
+            height: auto;
+            object-fit: contain; /* Ensure the entire image is visible, good for PNG */
+            border-radius: 0.75rem; /* rounded-lg */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease;
         }
 
-        .modal-content {
-            background-color: var(--card-bg);
-            margin: auto;
-            padding: 2.5rem;
-            border-radius: 1rem;
-            width: 80%;
-            max-width: 700px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            position: relative;
-            animation: fadeIn 0.3s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .close-button {
-            color: var(--text-muted);
-            font-size: 2rem;
-            position: absolute;
-            top: 1rem;
-            right: 1.5rem;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .close-button:hover,
-        .close-button:focus {
-            color: var(--neon-pink);
-        }
-
-        .modal-content h3 {
-            color: var(--neon-purple);
-            font-size: 2.2rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .modal-content p {
-            color: var(--text-light);
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-content .modal-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 0.75rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-content .modal-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
+        #about .about-image:hover {
+            transform: translateY(-5px);
         }
     </style>
 </head>
 <body>
+    <!-- Cabeçalho e Navegação -->
     <header id="main-header">
         <nav class="container mx-auto px-4 flex justify-between items-center">
             <div class="text-2xl font-bold text-white">
@@ -507,9 +465,10 @@
         </nav>
     </header>
 
+    <!-- Seção Hero (Introdução) -->
     <section id="hero" class="flex flex-col items-center justify-center">
         <div class="profile-img-container">
-            <img src="https://placehold.co/400x400/1f2937/e5e7eb?text=Sua+Foto" alt="Sua Foto de Perfil" class="profile-img">
+            <img src="https://i.postimg.cc/tCfgKjZx/as.jpg" alt="Sua Foto de Perfil" class="profile-img">
         </div>
         <h1 class="text-center" data-lang-key="heroTitle">Eu sou Jordan, um <br>Desenvolvedor & Designer</h1>
         <p class="text-center" data-lang-key="heroSubtitle">
@@ -521,8 +480,10 @@
         </div>
     </section>
 
+    <!-- Seção de Habilidades (Tech Stack) -->
     <section id="tech-stack">
         <h2 class="text-center" data-lang-key="techStackTitle">Tecnologias com as quais trabalho</h2>
+        <!-- Container para o efeito de rolagem - o conteúdo será duplicado via JS -->
         <div class="tech-icons-track" id="tech-icons-track">
             <div class="tech-icons">
                 <div class="tech-icon-item">
@@ -577,11 +538,12 @@
         </div>
     </section>
 
+    <!-- Seção Sobre Mim -->
     <section id="about" class="py-16">
         <h2 class="text-center" data-lang-key="aboutTitle">Sobre Mim</h2>
         <div class="flex flex-col md:flex-row items-center md:space-x-12">
             <div class="md:w-1/2 mb-8 md:mb-0">
-                <img src="https://placehold.co/600x400/1f2937/e5e7eb?text=Sua+Foto+Lateral" alt="Jordan Luiz - Sobre Mim" class="rounded-lg shadow-xl border border-gray-700">
+                <img src="https://i.postimg.cc/FFfTVb4V/tas.png" alt="Jordan Luiz - Sobre Mim" class="about-image">
             </div>
             <div class="md:w-1/2 text-lg text-gray-300">
                 <p class="mb-4" data-lang-key="aboutP1">
@@ -597,6 +559,7 @@
         </div>
     </section>
 
+    <!-- Seção de Projetos -->
     <section id="projects" class="py-16 bg-gray-900">
         <h2 class="text-center" data-lang-key="projectsTitle">Meus Projetos de Desenvolvimento</h2>
         <div class="grid">
@@ -672,6 +635,7 @@
         </div>
     </section>
 
+    <!-- Seção de Outras Habilidades -->
     <section id="other-skills" class="py-16 bg-gray-900">
         <h2 class="text-center" data-lang-key="otherSkillsTitle">Outras Habilidades & Expertise</h2>
         <div class="grid">
@@ -717,6 +681,7 @@
         </div>
     </section>
 
+    <!-- Seção de Contato -->
     <section id="contact" class="py-16 bg-gray-900">
         <h2 class="text-center" data-lang-key="contactTitle">Entre em Contato</h2>
         <p class="text-lg text-gray-300 text-center mb-8 max-w-2xl mx-auto" data-lang-key="contactDesc">
@@ -729,10 +694,12 @@
             </div>
     </section>
 
+    <!-- Rodapé -->
     <footer>
         <p data-lang-key="footerText">&copy; 2025 Jordan Luiz. Todos os direitos reservados.</p>
     </footer>
 
+    <!-- Modal Structure -->
     <div id="skillModal" class="modal">
         <div class="modal-content">
             <span class="close-button" id="closeModalBtn">&times;</span>
@@ -1087,3 +1054,5 @@
     </script>
 </body>
 </html>
+
+<!-- created by Jordanlvs 💼, all rights reserved ®  -->
